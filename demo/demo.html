@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="shortcut icon" href="https://rexskz.info/favicon.ico">
+    <style>
+        #sh {
+            width: 400px;
+            height: 400px;
+            display: inline-block;
+        }
+    </style>
+    <title>Rex.sh demo</title>
+</head>
+<body>
+    <div id="sh"></div>
+    <script src="../dist/rexsh.min.js"></script>
+    <script>
+        var sh = new Rexsh();
+        sh.setEnvs(['PS1=guest@rexskz.info$ ']);
+        sh.addFiles([{
+            type: 'dr--r--r--',
+            user: 'root',
+            size: 0,
+            name: '/bin',
+        }, {
+            type: 'dr--r--r--',
+            user: 'root',
+            size: 0,
+            name: '/etc',
+        }, {
+            type: '-r--r--r--',
+            user: 'root',
+            size: 10,
+            name: '/etc/fstab',
+        }, {
+            type: 'dr--r--r--',
+            user: 'root',
+            size: 0,
+            name: '/usr',
+        }, {
+            type: 'lr--r--r--',
+            user: 'root',
+            size: 0,
+            name: '/usr/bin',
+            alias: '/bin',
+        }, {
+            type: 'dr--r--r--',
+            user: 'root',
+            size: 0,
+            name: '/usr/share',
+        }]);
+        sh.attachTo(document.getElementById('sh'));
+        sh.pushLines(['Initialize OK.', '']);
+    </script>
+</body>
+</html>
